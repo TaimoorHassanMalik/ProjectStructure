@@ -1,20 +1,17 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {Example1, Example2} from './components';
 
-const App = () => {
+export const Home = () => {
   return (
     <View style={styles.container}>
-      <Text>App</Text>
+      <Example1 />
+      <Example2 />
+      <Text>Home</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  container: {},
 });
-
-export default App;

@@ -3,9 +3,24 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
     "start": "react-native start",
+    "android": "npx react-native run-android",
+    "android-dev": "setx ENVFILE .env && npx react-native run-android",
+    "android-prod": "setx ENVFILE .env.prod && npx react-native run-android",
+    "build-android-prod": "export ENVFILE=.env.prod && cd android && ./gradlew assembleRelease && cd ..",
+    "build-clean": "cd android && ./gradlew clean && cd ..",
+    "android-permission-execute": "chmod 755 android/gradlew",
+    "ios": "npx react-native run-ios",
+    "ios:x86": "arch -x86_64 npx react-native run-ios",
+    "ios-11": "npx react-native run-ios --simulator='iPhone 11 Pro Max'",
+    "ios-8": "npx react-native run-ios --simulator='iPhone 8'",
+    "remove-pods": "cd ios rm -rf Pods Podfile.lock &&  && cd ..",
+    "pod-install": "cd ios && pod install && cd ..",
+    "delete-nodes": "rm -rf node_modules package-lock.json && npm install",
+    "test-release": "cd android && ./gradlew assembleRelease && cd ..",
+    "release": "cd android && ./gradlew bundleRelease && cd ..",
+    "reset-cache": "npm start -- --reset-cache",
+    "remove-app": "adb uninstall com.awesomeproject",
     "test": "jest",
     "lint": "eslint ."
   },
@@ -21,7 +36,9 @@
     "eslint": "^6.5.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint-import-resolver-alias": "^1.1.2"
   },
   "jest": {
     "preset": "react-native"
